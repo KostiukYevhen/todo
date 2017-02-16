@@ -1,0 +1,60 @@
+body {
+  background: url(../img/bg.png);
+  font-family: 'Oswald', sans-serif;
+  margin: 0 auto;
+  color: #a9a9a9;
+}
+main {
+  margin-top: 100px;
+}
+.add {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 25px;
+}
+.add input {
+  margin-left: 40px;
+  border: none;
+  color: #a9a9a9;
+  font-size: 32px;
+  background: transparent;
+  cursor: pointer;
+}
+.all_tasks {
+  width: 25%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.checkbox {
+  float: left;
+}
+.checkbox ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tasks {
+  float: left;
+}
+.tasks ul {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  list-style: none;
+}
+.delete {
+  float: right;
+}
+.delete ul {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  list-style: none;
+}
+.delete_btn {
+  background: none;
+  border: none;
+  color: #a9a9a9;
+  font-size: 16px;
+  cursor: pointer;
+}
