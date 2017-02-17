@@ -42,6 +42,7 @@ main {
   width: 100%;
   cursor: pointer;
   border: none;
+  color: #414651;
   background: #fff;
   font-size: 18px;
 }
