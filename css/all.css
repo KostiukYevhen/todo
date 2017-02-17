@@ -20,41 +20,28 @@ main {
   background: transparent;
   cursor: pointer;
 }
-.all_tasks {
-  width: 25%;
+.tasks {
+  width: 22%;
   margin: 0 auto;
   margin-top: 20px;
 }
-.checkbox {
-  float: left;
-}
-.checkbox ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.tasks {
-  float: left;
-}
-.tasks ul {
-  margin: 0;
-  margin-left: 10px;
-  padding: 0;
-  list-style: none;
-}
-.delete {
-  float: right;
-}
-.delete ul {
-  margin: 0;
-  margin-left: 10px;
+.tasks > ul {
   padding: 0;
   list-style: none;
 }
 .delete_btn {
+  float: right;
+  padding-top: 4px;
   background: none;
   border: none;
   color: #a9a9a9;
   font-size: 16px;
   cursor: pointer;
+}
+.delete_com {
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+  font-size: 18px;
 }

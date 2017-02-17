@@ -13,28 +13,26 @@
       <span>Todo List</span>
       <input type="submit" value="+">
     </div>
-    <div class="all_tasks">
-      <div class="checkbox">
-        <ul>
-          <li><input id="1" type="checkbox"></li>
-          <li><input id="2" type="checkbox"></li>
-          <li><input id="3" type="checkbox"></li>
-        </ul>
-      </div>
-      <div class="tasks">
-        <ul>
-          <li><label for="1">Do something</label></li>
-          <li><label for="2">Do something else and else</label></li>
-          <li><label for="3">Do the homework</label></li>
-        </ul>
-      </div>
-      <div class="delete">
-        <ul>
-          <li><button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button></li>
-          <li><button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button></li>
-          <li><button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button></li>
-        </ul>
-      </div>
+    <div class="tasks">
+      <ul>
+        <li>
+          <input id="1" type="checkbox">
+          <label for="1">Do something</label>
+          <button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>
+        </li>
+        <li>
+          <input id="2" type="checkbox">
+          <label for="2">Do something else</label>
+          <button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>
+        </li>
+        <li>
+          <input id="3" type="checkbox">
+          <label for="3">Do the homework</label>
+          <button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+          </button>
+        </li>
+      </ul>
+      <button class="delete_com">Удалить выполненное</button>
     </div>
   </main>
 </body>
