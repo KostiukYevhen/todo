@@ -1,25 +1,22 @@
 window.onload = function() {
 
-  document.addEventListener('keypress', function() {
-    let inputVal,
+  function createList() {
+    let inputVal = document.getElementsByTagName('input')[0].value,
+        liCount = document.getElementsByTagName('li').length + 1,
         keyName = event.key,
-        liCount = document.getElementsByTagName('li').length + 1;
+        createLi = document.getElementsByTagName('li');
 
-    if (keyName === 'Enter') {
-      inputVal = document.getElementsByTagName('input')[0].value;
+    if (keyName === 'Enter' && inputVal != '') {
       document.getElementsByTagName('input')[0].value = '';
-      document.getElementsByTagName('li')[0].insertAdjacentHTML('beforebegin', '<li></li>');
-      document.getElementsByTagName('li')[0].insertAdjacentHTML('beforeend', '<input type="checkbox">');
-      document.getElementsByTagName('li')[0].insertAdjacentHTML('beforeend', '<label>' + inputVal + '</label>');
-      document.getElementsByTagName('li')[0].insertAdjacentHTML('beforeend', '<button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>');
+      createLi[0].insertAdjacentHTML('beforebegin', '<li></li>');
+      createLi[0].insertAdjacentHTML('beforeend', '<label>' + inputVal + '</label>');
+      createLi[0].insertAdjacentHTML('afterbegin', '<input type="checkbox">');
+      createLi[0].insertAdjacentHTML('beforeend', '<button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>');
       document.getElementsByTagName('input')[1].setAttribute('id', liCount);
       document.getElementsByTagName('label')[0].setAttribute('for', liCount);
-      return ;
     }
+  }
 
-
-
-  }, false);
+  document.addEventListener('keypress', createList, false);
 
 }
-
