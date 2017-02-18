@@ -20,6 +20,9 @@ main {
   background: transparent;
   cursor: pointer;
 }
+label {
+  padding-left: 3px;
+}
 .tasks {
   width: 22%;
   margin: 0 auto;
