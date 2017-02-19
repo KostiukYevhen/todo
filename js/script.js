@@ -13,6 +13,7 @@ window.onload = function() {
       createLi[0].insertAdjacentHTML('afterbegin', '<input type="checkbox">');
       createLi[0].insertAdjacentHTML('beforeend', '<button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>');
       document.getElementsByTagName('input')[1].setAttribute('id', liCount);
+      document.getElementsByTagName('input')[1].classList.add('checkbox');
       document.getElementsByTagName('label')[0].setAttribute('for', liCount);
     }
   }
@@ -35,9 +36,15 @@ window.onload = function() {
   let delAll = document.getElementsByClassName('delete_all');
 
   delAll[0].addEventListener('click', function() {
-    let checkAll = document.querySelectorAll('[checked]');
-    parentLi = this.parentElement;
-    parentLi.style.display = 'none';
+
+    let checkAll = document.getElementsByClassName('checkbox');
+
+    for(let i = 0; i < checkAll.length; i++) {
+      if(checkAll[i].checked) {
+        let parentLi = checkAll[i].parentNode;
+        parentLi.style.display = 'none';
+      }
+    }
   }, false)
 
 }
