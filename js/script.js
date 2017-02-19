@@ -32,5 +32,13 @@ window.onload = function() {
 
   document.addEventListener('click', deleteList, true);
 
+  let delAll = document.getElementsByClassName('delete_all');
+
+  delAll[0].addEventListener('click', function() {
+    let checkAll = document.querySelectorAll('[checked]');
+    parentLi = this.parentElement;
+    parentLi.style.display = 'none';
+  }, false)
+
 }
 
