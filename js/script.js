@@ -1,10 +1,10 @@
 window.onload = function() {
+  let liCount = document.getElementsByTagName('li').length + 1,
+      createLi = document.getElementsByTagName('li');
 
   function createList() {
     let inputVal = document.getElementsByTagName('input')[0].value,
-        liCount = document.getElementsByTagName('li').length + 1,
-        keyName = event.key,
-        createLi = document.getElementsByTagName('li');
+        keyName = event.key;
 
     if (keyName === 'Enter' && inputVal != '') {
       document.getElementsByTagName('input')[0].value = '';
@@ -19,4 +19,18 @@ window.onload = function() {
 
   document.addEventListener('keypress', createList, false);
 
+  let del = document.getElementsByClassName('delete_btn');
+
+  function deleteList() {
+    for(let i = 0; i < del.length; i++) {
+      del[i].onclick = function() {
+        let par = this.parentElement;
+        par.style.display = 'none';
+      };
+    }
+  }
+
+  document.addEventListener('click', deleteList, true);
+
 }
+
