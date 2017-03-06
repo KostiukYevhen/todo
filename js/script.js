@@ -1,98 +1,99 @@
-// window.onload = function() {
-//   let liCount = document.getElementsByTagName('li').length + 1,
-//       createLi = document.getElementsByTagName('li');
-
-//   function createList() {
-//     let inputVal = document.getElementsByTagName('input')[0].value,
-//         keyName = event.key;
-
-//     if (keyName === 'Enter' && inputVal != '') {
-//       document.getElementsByTagName('input')[0].value = '';
-//       createLi[0].insertAdjacentHTML('beforebegin', '<li></li>');
-//       createLi[0].insertAdjacentHTML('beforeend', '<label>' + inputVal + '</label>');
-//       createLi[0].insertAdjacentHTML('afterbegin', '<input type="checkbox">');
-//       createLi[0].insertAdjacentHTML('beforeend', '<button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>');
-//       document.getElementsByTagName('input')[1].setAttribute('id', liCount);
-//       document.getElementsByTagName('input')[1].classList.add('checkbox');
-//       document.getElementsByTagName('label')[0].setAttribute('for', liCount);
-//     }
-//   }
-
-//   document.addEventListener('keypress', createList, false);
-
-//   let del = document.getElementsByClassName('delete_btn');
-
-//   function deleteList() {
-//     for(let i = 0; i < del.length; i++) {
-//       del[i].onclick = function() {
-//         let par = this.parentElement;
-//         par.style.display = 'none';
-//       };
-//     }
-//   }
-
-//   document.addEventListener('click', deleteList, true);
-
-//   let delAll = document.getElementsByClassName('delete_all');
-
-//   delAll[0].addEventListener('click', function() {
-
-//     let checkAll = document.getElementsByClassName('checkbox');
-
-//     for(let i = 0; i < checkAll.length; i++) {
-//       if(checkAll[i].checked) {
-//         let parentLi = checkAll[i].parentNode;
-//         parentLi.style.display = 'none';
-//       }
-//     }
-//   }, false)
-
-// }
-
-
 window.onload = function() {
 
-  let inputHTML = {text: 'Do something else', checked: false};
-  let ul = document.getElementsByTagName('ul');
-  let listLi = document.getElementsByTagName('li');
-  let label = document.createElement('label');
-  let button = '<button class="delete_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>';
-  let li = document.createElement('li');
-  let input = document.createElement('input');
+  // Render TodoList
 
-  function addItem(obj) {
-    input.setAttribute('type', 'checkbox');
-    input.setAttribute('id', listLi.length + 1);
-    input.classList.add('checkbox');
-    label.innerHTML = obj.text;
-    label.setAttribute('for', listLi.length + 1);
+  let state = [];
+
+  function createTodo(value) {
+    let obj = {text: '', checked: false};
+    obj.text = value;
+    return obj;
   }
 
-  function addItemToDom(func) {
-    addItem(inputHTML);
-    li.appendChild(input);
-    li.appendChild(label);
-    li.insertAdjacentHTML('beforeend', button);
-    ul[0].prepend(li);
-  }
+  function renderTodo(value) {
 
-  function inputToText(input) {
-    return inputHTML.text = input;
-  }
+    for (let i = 0; i < state.length; i++) {
 
-  // inputToText(inputVal);
+      let label = document.createElement('label');
+      let button = '<button class="remove_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>';
+      let li = document.createElement('li');
+      let checkbox = document.createElement('input');
 
-  document.addEventListener('keypress', function() {
+      label.setAttribute('for', i);
+      checkbox.setAttribute('type', 'checkbox');
+      checkbox.setAttribute('id', i);
+      checkbox.classList.add('checkbox');
 
-    let inputVal = document.getElementsByTagName('input')[0].value;
-
-    if (event.key === 'Enter' && inputVal != '') {
-      inputToText(inputVal);
-      addItemToDom();
-      document.getElementsByTagName('input')[0].value = '';
-
+      label.insertAdjacentHTML('beforeend', state[i].text);
+      li.appendChild(checkbox);
+      li.appendChild(label);
+      li.insertAdjacentHTML('beforeend', button);
+      document.getElementsByTagName('ul')[0].appendChild(li);
     }
 
+  }
+
+  function render() {
+    document.getElementsByTagName('ul')[0].innerHTML = '';
+    renderTodo(state);
+  }
+
+  function handleInput() {
+    let input = document.getElementsByTagName('input')[0].value;
+
+    if (event.key === 'Enter' && input != '') {
+      addTodo(input);
+      document.getElementsByTagName('input')[0].value = '';
+    }
+  }
+
+  function addTodo(value) {
+    let valueForState = createTodo(value);
+    state.unshift(valueForState);
+    render();
+  }
+
+  document.addEventListener('keypress', function() {
+    handleInput();
   }, false);
 
+
+  // Remove Todo
+
+  let removeItem = document.getElementsByClassName('remove_btn');
+
+  function removeItems() {
+
+    for(let i = 0; i < removeItem.length; i++) {
+
+      removeItem[i].onclick = function() {
+        let parent = this.parentElement;
+        parent.style.display = 'none';//change
+      };
+    }
+  }
+
+  document.addEventListener('click', removeItems, true);
+
+  // Remove All Todo
+
+  let removeAll = document.getElementsByClassName('remove_all');
+
+  function removeAllItems() {
+
+    let checkAll = document.getElementsByClassName('checkbox');
+
+    for(let i = 0; i < checkAll.length; i++) {
+
+      if (checkAll[i].checked) {
+        let parent = checkAll[i].parentNode;
+        parent.style.display = 'none';
+      }
+    }
+  }
+
+  removeAll[0].addEventListener('click', removeAllItems, false);
+
 }
+
+

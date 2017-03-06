@@ -29,7 +29,7 @@ main {
   padding: 0;
   list-style: none;
 }
-.delete_btn {
+.remove_btn {
   float: right;
   padding-top: 4px;
   background: none;
@@ -38,7 +38,7 @@ main {
   font-size: 16px;
   cursor: pointer;
 }
-.delete_all {
+.remove_all {
   width: 100%;
   cursor: pointer;
   border: none;
