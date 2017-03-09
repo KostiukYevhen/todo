@@ -65,6 +65,7 @@ window.onload = function() {
 
       let item = target.parentNode.parentNode;
       let parent = item.parentNode;
+
       let value = item.innerText;
 
       parent.removeChild(item);
