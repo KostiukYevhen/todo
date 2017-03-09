@@ -76,10 +76,6 @@ window.onload = function() {
 
   };
 
-  // Remove All Todo
-
-
-
 }
 
 
