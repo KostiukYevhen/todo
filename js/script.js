@@ -5,12 +5,10 @@ window.onload = function() {
   let state = [];
 
   function createTodo(value) {
-    let obj = {text: '', checked: false};
-    obj.text = value;
-    return obj;
+    return obj = {text: value, checked: false};
   }
 
-  function renderTodo(value) {
+  function renderTodo() {
 
     for (let i = 0; i < state.length; i++) {
 
@@ -27,23 +25,22 @@ window.onload = function() {
       label.insertAdjacentHTML('beforeend', state[i].text);
       li.appendChild(checkbox);
       li.appendChild(label);
-      li.insertAdjacentHTML('beforeend', button);
-      document.getElementsByTagName('ul')[0].appendChild(li);
+      li.innerHTML += button;
+      document.querySelector('.list').appendChild(li);
     }
-
   }
 
   function render() {
-    document.getElementsByTagName('ul')[0].innerHTML = '';
+    document.querySelector('.list').innerHTML = '';
     renderTodo(state);
   }
 
   function handleInput() {
-    let input = document.getElementsByTagName('input')[0].value;
+    let input = document.querySelector('.enter').value;
 
-    if (event.key === 'Enter' && input != '') {
+    if (event.which === 13 && input != '') {
       addTodo(input);
-      document.getElementsByTagName('input')[0].value = '';
+      document.querySelector('.enter').value = '';
     }
   }
 
@@ -57,42 +54,30 @@ window.onload = function() {
     handleInput();
   }, false);
 
-
   // Remove Todo
+  let ul = document.querySelector('.list');
 
-  let removeItem = document.getElementsByClassName('remove_btn');
+  ul.onclick = function(event) {
 
-  function removeItems() {
+    let target = event.target;
 
-    for(let i = 0; i < removeItem.length; i++) {
+    if (target.tagName == 'BUTTON' || target.tagName == 'I') {
 
-      removeItem[i].onclick = function() {
-        let parent = this.parentElement;
-        parent.style.display = 'none';//change
-      };
-    }
-  }
+      let item = target.parentNode.parentNode;
+      let parent = item.parentNode;
+      let value = item.innerText;
 
-  document.addEventListener('click', removeItems, true);
+      parent.removeChild(item);
+
+      state.splice(state.indexOf(value), 1);
+      console.log(state);
+    };
+
+  };
 
   // Remove All Todo
 
-  let removeAll = document.getElementsByClassName('remove_all');
 
-  function removeAllItems() {
-
-    let checkAll = document.getElementsByClassName('checkbox');
-
-    for(let i = 0; i < checkAll.length; i++) {
-
-      if (checkAll[i].checked) {
-        let parent = checkAll[i].parentNode;
-        parent.style.display = 'none';
-      }
-    }
-  }
-
-  removeAll[0].addEventListener('click', removeAllItems, false);
 
 }
 
