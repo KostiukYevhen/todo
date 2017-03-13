@@ -5,13 +5,12 @@ window.onload = function() {
   let state = [];
 
   function createTodo(value) {
-    return obj = {text: value, checked: false};
+    return obj = {text: value, checked: false, id: 0};
   }
 
   function renderTodo() {
 
-    for (let i = 0; i < state.length; i++) {
-
+    state.forEach(function(item, i, state) {
       let label = document.createElement('label');
       let button = '<button class="remove_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>';
       let li = document.createElement('li');
@@ -22,12 +21,35 @@ window.onload = function() {
       checkbox.setAttribute('id', i);
       checkbox.classList.add('checkbox');
 
+
       label.insertAdjacentHTML('beforeend', state[i].text);
+      li.setAttribute('data-id', i);
       li.appendChild(checkbox);
       li.appendChild(label);
       li.innerHTML += button;
       document.querySelector('.list').appendChild(li);
-    }
+    });
+
+    // for (let i = 0; i < state.length; i++) {
+
+    //   let label = document.createElement('label');
+    //   let button = '<button class="remove_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>';
+    //   let li = document.createElement('li');
+    //   let checkbox = document.createElement('input');
+
+    //   label.setAttribute('for', i);
+    //   checkbox.setAttribute('type', 'checkbox');
+    //   checkbox.setAttribute('id', i);
+    //   checkbox.classList.add('checkbox');
+
+
+    //   label.insertAdjacentHTML('beforeend', state[i].text);
+    //   li.setAttribute('data-id', i);
+    //   li.appendChild(checkbox);
+    //   li.appendChild(label);
+    //   li.innerHTML += button;
+    //   document.querySelector('.list').appendChild(li);
+    // }
   }
 
   function render() {
@@ -60,24 +82,38 @@ window.onload = function() {
   ul.onclick = function(event) {
 
     let target = event.target;
+    let id = target.parentNode.getAttribute('data-id');
 
-    if (target.tagName == 'BUTTON' || target.tagName == 'I') {
+    if (target.nodeName == 'I') {
 
-      let item = target.parentNode.parentNode;
-      let parent = item.parentNode;
-      let value = item.innerText;
+      state.splice(id, 1);
+      render();
 
-      parent.removeChild(item);
+    } else if (target.nodeName == "INPUT") {
 
-      state.splice(state.indexOf(value), 1);
-      console.log(state);
-    };
+      if(state[id].checked == false) {
+        state[id].checked = true;
+      } else {
+        state[id].checked = false;
+      }
 
+    }
   };
 
-  // Remove All Todo
+  //Remove completed todo
 
+  let removeAll = document.querySelector('.remove_all');
 
+  removeAll.onclick = function(event) {
+
+    state = state.filter(function(obj) {
+      if (obj.checked == false) {
+        return true;
+      }
+    });
+
+    render();
+  }
 
 }
 
