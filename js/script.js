@@ -21,7 +21,6 @@ window.onload = function() {
       checkbox.setAttribute('id', i);
       checkbox.classList.add('checkbox');
 
-
       label.insertAdjacentHTML('beforeend', state[i].text);
       li.setAttribute('data-id', i);
       li.appendChild(checkbox);
@@ -29,27 +28,6 @@ window.onload = function() {
       li.innerHTML += button;
       document.querySelector('.list').appendChild(li);
     });
-
-    // for (let i = 0; i < state.length; i++) {
-
-    //   let label = document.createElement('label');
-    //   let button = '<button class="remove_btn"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>';
-    //   let li = document.createElement('li');
-    //   let checkbox = document.createElement('input');
-
-    //   label.setAttribute('for', i);
-    //   checkbox.setAttribute('type', 'checkbox');
-    //   checkbox.setAttribute('id', i);
-    //   checkbox.classList.add('checkbox');
-
-
-    //   label.insertAdjacentHTML('beforeend', state[i].text);
-    //   li.setAttribute('data-id', i);
-    //   li.appendChild(checkbox);
-    //   li.appendChild(label);
-    //   li.innerHTML += button;
-    //   document.querySelector('.list').appendChild(li);
-    // }
   }
 
   function render() {
@@ -85,18 +63,14 @@ window.onload = function() {
     let id = target.parentNode.getAttribute('data-id');
 
     if (target.nodeName == 'I') {
-
       state.splice(id, 1);
       render();
-
     } else if (target.nodeName == "INPUT") {
-
       if(state[id].checked == false) {
         state[id].checked = true;
       } else {
         state[id].checked = false;
       }
-
     }
   };
 
@@ -105,16 +79,9 @@ window.onload = function() {
   let removeAll = document.querySelector('.remove_all');
 
   removeAll.onclick = function(event) {
-
-    state = state.filter(function(obj) {
-      if (obj.checked == false) {
-        return true;
-      }
-    });
-
+    state = state.filter(obj => !obj.checked);
     render();
   }
-
 }
 
 
